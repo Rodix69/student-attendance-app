@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Student Attendance",
+    "slug": "student-attendance",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "plugins": [
+      "expo-sqlite",
+      "expo-asset"
+    ]
+  }
+}

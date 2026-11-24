@@ -6,12 +6,18 @@ Import students from Excel, mark attendance one student at a time, and print the
 ## Features
 
 - **Import from Excel** - reads `.xlsx` files with the columns `Student Name`, `Roll Number`, `Course Name`.
-- **Attendance screen** - list with Sl. No., Name, Roll Number and an Absent toggle.
-  - **Present** / **Absent** buttons mark the highlighted student and move to the next one. Present is the default.
-  - Row colours: blue = current student, red = absent.
-  - Progress bar showing how many students are marked.
-- **Save attendance** - writes absentees to the database with a timestamp.
-- **Absentees list** - shows the latest saved day's absentees and prints them.
+- **Attendance by date** - choosing Attendance first asks for the date (default today, editable to any date).
+  - List with Sl. No., Name, Roll Number and an Absent toggle.
+  - **Present** / **Absent** buttons mark the highlighted student and move to the next. Present is the default.
+  - Row colours: blue = current student, red = absent. Progress bar shows how many are marked.
+  - The day is saved automatically when every student is marked (or press **Save attendance**). Re-opening a date lets you edit it.
+- **Three reports for a date range (From / To):**
+  1. **Absence during a period** - one row per absence, with name and date.
+  2. **Absent every day** - names of students absent on all recorded days in the period.
+  3. **Present every day** - names of students present on all recorded days in the period.
+  All reports can be printed.
+
+Only days on which attendance was saved count as attendance days in the reports.
 
 ## Database (SQLite, on the device)
 
@@ -30,6 +36,8 @@ Import students from Excel, mark attendance one student at a time, and print the
 |---|---|
 | date_time | TEXT (ISO timestamp) |
 | student_id | INTEGER, foreign key to Students(id) |
+
+**AttendanceDays** (helper table) - one row per date on which attendance was taken (`att_date`, primary key). It lets the reports know which days count, so "present every day" can be worked out.
 
 ## Getting started
 
